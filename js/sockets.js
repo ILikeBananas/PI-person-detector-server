@@ -1,6 +1,8 @@
 var socket = io()
 
-function changeVolume(index, volume){
+function changeVolume(index){
+    let volume = document.getElementById('input' + index).value
+    console.log(volume)
     console.log('Volume changed to ' + volume + ' on index ' + index)
     socket.emit('change volume', {'index': index, 'volume': volume})
 }
