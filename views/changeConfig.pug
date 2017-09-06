@@ -1,8 +1,12 @@
 html
-  head
-    
   body
     h1 test  
+    each pi in RPIs
+        h1(id='nom' + pi.socket.index) nom : #{pi.name}
+        h1(id='volume' + pi.socket.index) volume : #{pi.volume}        
+        button(onclick='changeVolume('+ pi.socket.index + ', 8)', type='button') change volume
+        hr
+            
   script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js')
   script(src='/js/sockets.js')
   

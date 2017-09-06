@@ -1,4 +1,4 @@
-class Raspberry {
+module.exports = class Raspberry {
   constructor(socket, name) {
     this.socket = socket
     this.name = name
@@ -19,6 +19,7 @@ class Raspberry {
       return
     }
     this.volume = volume
+    console.log('RPI: changed volume')
+    this.socket.emit('new volume', {'volume': this.volume, 'index': this.socket.index})
   }
 }
-export default Raspberry
