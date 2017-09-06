@@ -1,10 +1,13 @@
 var socket = io()
 
 function changeVolume(index){
-    let volume = document.getElementById('input' + index).value
-    console.log(volume)
-    console.log('Volume changed to ' + volume + ' on index ' + index)
-    socket.emit('change volume', {'index': index, 'volume': volume})
+    let element = document.getElementById('input' + index)
+    let volume = element.value
+    if(volume < 0 || volume > 10) {
+        document.getElementById('input' + index).value = 10
+    } else {
+        socket.emit('change volume', {'index': index, 'volume': volume})
+    }
 }
 
 socket.on('new volume', (info) => {

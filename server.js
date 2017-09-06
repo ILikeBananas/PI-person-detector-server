@@ -41,9 +41,9 @@ io.on('connection', (socket) => {
   })
 
   socket.on('change volume', (info) => {
-      RPIs[info.index].setVolume(info.volume)
-      console.log('SERVER: change volume to ' + info.volume)
-      socket.emit('new volume', info)
+      if(RPIs[info.index].setVolume(info.volume)) {
+          io.emit('new volume', info)
+      }
   })
 })
 

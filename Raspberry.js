@@ -16,10 +16,13 @@ module.exports = class Raspberry {
     // Check if the given volume is valid
     if(volume < 0 || volume > 10) {
       console.log('invalide volume for : ' + this.name)
-      return
+      return false
+    } else {
+      this.volume = volume
+      console.log('RPI: changed volume')
+      //this.socket.broadcast('new volume', {'volume': this.volume, 'index': this.socket.index})
+      return true
     }
-    this.volume = volume
-    console.log('RPI: changed volume')
-    this.socket.emit('new volume', {'volume': this.volume, 'index': this.socket.index})
+
   }
 }
