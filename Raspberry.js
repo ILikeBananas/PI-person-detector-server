@@ -6,10 +6,6 @@ module.exports = class Raspberry {
     this.soundFilePath = ""
   }
 
-  test(TestMessage) {
-    socket.emit("test", TestMessage)
-  }
-
   // Change the volume to the given state
   // param : volume (int 1-10)
   setVolume(volume) {
@@ -23,6 +19,10 @@ module.exports = class Raspberry {
       //this.socket.broadcast('new volume', {'volume': this.volume, 'index': this.socket.index})
       return true
     }
+  }
 
+  SendConfig() {
+      socket.emit('new config', {"name": this.name, "volume": this.volume, "soundFilePath": this.soundFilePath})
+      console.log('config send')
   }
 }
